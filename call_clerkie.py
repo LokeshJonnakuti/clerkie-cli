@@ -1,7 +1,7 @@
-import requests
 from rich import print
 from rich.console import Console
 import os
+from security import safe_requests
 
 # Set the base URL of the Flask app
 base_url = "https://clerkieserverchromeextensionv1.krrishdholakia.repl.co/"
@@ -44,7 +44,7 @@ def debug_terminal():
   returned = False
   with console.status("[bold green] Clerkie noticed an error. Thinking :robot:") as status:
       while not returned:
-        response = requests.get(base_url + "/term", params={"user_query": error_msg, "user_id": get_user_id()})
+        response = safe_requests.get(base_url + "/term", params={"user_query": error_msg, "user_id": get_user_id()})
         returned = True
 
   # Check the status code of the response
