@@ -11,12 +11,12 @@ user_email_path = os.path.expanduser("~") + "/.clerkie-cli/clerkie-src/clerkie.t
 def get_user_id():
   if not os.path.exists(user_email_path): # if user has not gone through email setup
     return "default_user"
-  user_id_file = open(user_email_path, 'r')
-  email = ""
-  for line in user_id_file:
-    line = line.strip()
-    if line != "":
-      email = line
+  with open(user_email_path, 'r') as user_id_file:
+    email = ""
+    for line in user_id_file:
+      line = line.strip()
+      if line != "":
+        email = line
   return email
 
 def debug_terminal():
